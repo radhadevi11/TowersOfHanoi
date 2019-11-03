@@ -1,6 +1,7 @@
 package com.radha.towersOfHanoi;
 
 import java.util.EmptyStackException;
+import java.util.Optional;
 import java.util.Stack;
 
 public class Tower {
@@ -26,7 +27,11 @@ public class Tower {
      * @throws PutDiskException If the given disk is larger than the current topmost disk
      */
     public void putDisk(Disk disk) throws PutDiskException{
-        if(disk.compareTo(disks.peek()) < 0) {
+        Optional<Disk> topDisk = getTopDisk();
+        if(! topDisk.isPresent()){
+            disks.push(disk);
+        }
+        else if(disk.compareTo(topDisk.get()) < 0) {
             disks.push(disk);
         }
         else{
@@ -49,7 +54,21 @@ public class Tower {
                 "id=" + id +
                 '}';
     }
-    public Disk getTopDisk(){
-        return this.disks.peek();
+    public Optional<Disk> getTopDisk(){
+        if(disks.empty()){
+            return Optional.empty();
+        }
+        return Optional.of(disks.peek());
     }
+
+    public void move(Tower destinationTower) throws  NoMoreDiskException, PutDiskException {
+        Disk disk = this.getTopDisk()
+                .orElseThrow(() -> new NoMoreDiskException("The top most disk is empty"));
+
+           destinationTower.putDisk(disk);
+            this.removeDisk();
+
+
+    }
+
 }

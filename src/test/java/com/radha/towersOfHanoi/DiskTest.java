@@ -20,4 +20,5 @@ public class DiskTest {
         Assertions.assertThat(equallyBigDisk.compareTo(bigDisk)).isEqualTo(0);
 
     }
+
 }

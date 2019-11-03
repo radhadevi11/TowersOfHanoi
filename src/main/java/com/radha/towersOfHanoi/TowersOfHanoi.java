@@ -24,14 +24,11 @@ public class TowersOfHanoi {
     }
 
     public void move(Move move) throws MoveException {
-        Disk disk = move.getSourceTower().getTopDisk();
         try {
-            move.getDestinationTower().putDisk(disk);
-            move.getSourceTower().removeDisk();
+            move.getSourceTower().move(move.getDestinationTower());
         } catch (PutDiskException | NoMoreDiskException e ) {
             //System.out.println("");
             throw new MoveException(move, e);
         }
-
     }
 }
