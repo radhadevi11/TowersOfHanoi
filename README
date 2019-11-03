@@ -1,0 +1,129 @@
+Setup
+There are 3 towers given, Tower1, Tower2 and Tower3. Tower1 has N disks.
+Tower 2 and Tower 3 have no disks.
+The disks in the Tower1 are arranged in the order of radius,
+with the largest disk at the bottom and the smallest disk at the top.
+
+
+Problem
+You have to move all the N disks from Tower1 to Tower3.
+Solve(N, Tower1, Tower3)
+
+Constraints
+At a time, you can only move one disk from one tower to another.
+You cannot place a larger disk over another disk.
+
+Solution
+If there are N disks in source tower (Tower1), then the optimal number of
+moves to reach the destination tower (Tower3) is 2^n - 1.
+
+N = 1 Problem: (base case)
+Solve(1, Tower1, Tower3)
+
+Move disk from Tower1 to Tower3
+
+N = 2 Problem:
+Solve(2, Tower1, Tower3)
+
+Move disk1 from Tower1 to Tower2 => Solve(1, Tower1, Tower2) => N = 1 Problem
+Move disk2 from Tower1 to Tower3 => Solve(1, Tower1, Tower3) => N = 1 Problem
+Move disk1 from Tower2 to Tower3 => Solve(1, Tower2, Tower3) => N = 1 Problem
+
+N = 3 Problem:
+Solve(3, Tower1, Tower3)
+
+Solve(2, Tower1, Tower2) => N = 2 problem
+Move disk1 from Tower1 to Tower3
+Move disk2 from Tower1 to Tower2
+Move disk1 from Tower3 to Tower2
+
+Solve(1, Tower2, Tower3) => N = 1 Problem
+Move disk3 from Tower1 to Tower3
+
+Solve(2, Tower2, Tower3) => N = 2 problem
+Move disk1 from Tower2 to Tower1
+Move disk2 from Tower2 to Tower3
+Move disk1 from Tower1 to Tower3
+
+Summary:
+Solve(2, Tower1, Tower2) => N = 2 problem
+Solve(1, Tower1, Tower3) => N = 1 Problem
+Solve(2, Tower2, Tower3) => N = 2 problem
+
+N = 4 Problem:
+
+Summary:
+Solve(3, Tower1, Tower2) => N = 3 problem
+Solve(1, Tower1, Tower3) => N = 1 Problem
+Solve(3, Tower2, Tower3) => N = 3 problem
+
+N problem:
+
+Summary:
+Solve(N-1, Tower1, Tower2) => N = N-1 problem
+Solve(1, Tower1, Tower3) => N = 1 Problem
+Solve(N-1, Tower2, Tower3) => N = 3 problem
+
+Initially, move N-1 disks from Tower 1 to Tower 2.
+Then move Nth disk from Tower1 to Tower 3.
+Finally, move N-1 disks from Tower2 to Tower3.
+
+
+Nouns
+Solver (You)
+Problem
+Solution
+Tower
+Disk
+
+Plurals
+
+Towers
+Disks
+
+Verbs
+
+Move
+
+Flow:
+====
+You are given a problem
+Create a solution
+Test the solution
+
+Classes
+=======
+Disk
+	- radius
+	- able to compare to another disk
+Tower
+	- id
+	- list of disks
+	- number of disks
+	- put disk
+	- remove disk
+
+TowersOfHanoi
+ 	- 3 Towers (Tower1, Tower2, Tower3)
+ 	- move( Move m)
+
+Problem
+	- N
+	- initialState : TowersOfHanoi with Tower1 with N disks, 2 and 3 with no disks
+	- finalState : : TowersOfHanoi with Tower1 with 0 disks, 2 and 3 with N disks
+	- test a solution
+Move
+	- source tower
+	- destination tower
+
+Solution
+	- Problem
+	- solve() : list of moves
+
+
+Problem p = new Problem(N)
+Solver s = new Solution(p);
+List<Move> moves = s.solve()
+p.test(moves)
+TowersOfHanoi.txt
+Displaying TowersOfHanoi.txt.
