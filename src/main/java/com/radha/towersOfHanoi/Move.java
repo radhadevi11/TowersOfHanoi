@@ -1,30 +1,30 @@
 package com.radha.towersOfHanoi;
 
 /**
- * The Move represents moving one disk from the sourceTower to destinationTower
+ * The Move represents moving one disk from the sourceTowerId to destinationTowerId
  */
 public class Move {
-    private Tower sourceTower;
-    private Tower destinationTower;
+    private int sourceTowerId;
+    private int destinationTowerId;
 
-    public Move(Tower sourceTower, Tower destinationTower) {
-        this.sourceTower = sourceTower;
-        this.destinationTower = destinationTower;
+    public Move(int sourceTowerId, int destinationTowerId) {
+        this.sourceTowerId = sourceTowerId;
+        this.destinationTowerId = destinationTowerId;
     }
 
-    public Tower getSourceTower() {
-        return sourceTower;
+    public int getSourceTowerId() {
+        return sourceTowerId;
     }
 
-    public Tower getDestinationTower() {
-        return destinationTower;
+    public int getDestinationTowerId() {
+        return destinationTowerId;
     }
 
     @Override
     public String toString() {
         return "Move{" +
-                "sourceTower=" + sourceTower +
-                ", destinationTower=" + destinationTower +
+                "sourceTowerId=" + sourceTowerId +
+                ", destinationTowerId=" + destinationTowerId +
                 '}';
     }
 }

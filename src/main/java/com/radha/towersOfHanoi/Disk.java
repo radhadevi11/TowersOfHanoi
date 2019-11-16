@@ -27,5 +27,10 @@ public class Disk implements Comparable<Disk> {
         return Double.compare(disk.radius, radius) == 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Disk{" +
+                "radius=" + radius +
+                '}';
+    }
 }

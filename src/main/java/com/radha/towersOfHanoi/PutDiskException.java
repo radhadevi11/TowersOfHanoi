@@ -1,10 +1,14 @@
 package com.radha.towersOfHanoi;
 
 public class PutDiskException extends Exception{
-    public PutDiskException(String message, Throwable cause){
-        super(message, cause);
+
+    public PutDiskException(Disk disk, Tower tower){
+        super("You can not put a large disk:" + disk + " on Tower: " + tower + " above the small disk");
     }
-    public PutDiskException(String message){
-        super(message);
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof PutDiskException &&
+                getMessage().equals(((PutDiskException) obj).getMessage());
     }
 }

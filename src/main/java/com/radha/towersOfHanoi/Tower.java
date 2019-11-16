@@ -35,7 +35,7 @@ public class Tower {
             disks.push(disk);
         }
         else{
-            throw new PutDiskException("You can not put a large disk above the small disk");
+            throw new PutDiskException(disk, this);
         }
 
     }
@@ -63,12 +63,21 @@ public class Tower {
 
     public void move(Tower destinationTower) throws  NoMoreDiskException, PutDiskException {
         Disk disk = this.getTopDisk()
-                .orElseThrow(() -> new NoMoreDiskException("The top most disk is empty"));
+                .orElseThrow(() -> new NoMoreDiskException(this));
 
            destinationTower.putDisk(disk);
             this.removeDisk();
 
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tower tower = (Tower)o;
+        return (this.id == tower.id) && this.disks.equals(tower.disks) ;
+    }
+
 
 }
