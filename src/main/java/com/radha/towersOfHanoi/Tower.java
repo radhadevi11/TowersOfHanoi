@@ -52,6 +52,7 @@ public class Tower {
     public String toString() {
         return "Tower{" +
                 "id=" + id +
+                 "noOfDisk="+disks.size()+
                 '}';
     }
     public Optional<Disk> getTopDisk(){

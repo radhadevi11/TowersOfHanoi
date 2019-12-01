@@ -1,5 +1,7 @@
 package com.radha.towersOfHanoi;
 
+import java.util.Optional;
+
 public class TowersOfHanoi {
     private Tower t1;
     private Tower t2;
@@ -14,12 +16,25 @@ public class TowersOfHanoi {
 
     }
 
+    public Tower getT1() {
+        return t1;
+    }
+
+    public Tower getT2() {
+        return t2;
+    }
+
+    public Tower getT3() {
+        return t3;
+    }
 
     public void move(Move move) throws MoveException {
         try {
-           Tower sourceTower = getTowerByTowerId(move.getSourceTowerId());
-           Tower destinationTower = getTowerByTowerId(move.getDestinationTowerId());
-           sourceTower.move(destinationTower);
+
+               Tower sourceTower = getTowerByTowerId(move.getSourceTowerId());
+               Tower destinationTower = getTowerByTowerId(move.getDestinationTowerId());
+               sourceTower.move(destinationTower);
+
         } catch (PutDiskException | NoMoreDiskException e ) {
             //System.out.println("");
             throw new MoveException(move, e);
@@ -40,11 +55,21 @@ public class TowersOfHanoi {
         if(id == t1.getId()){
             return t1;
         }
-        else if(id == t2.getId()){
+        if(id == t2.getId()){
             return t2;
         }
-        else{
+        if(id == t3.getId()){
             return  t3;
         }
+        throw new IllegalArgumentException("Invalid Tower Id. Tower Id can be 1,2 or 3");
+    }
+
+    @Override
+    public String toString() {
+        return "TowersOfHanoi{" +
+                "t1=" + t1 +
+                ", t2=" + t2 +
+                ", t3=" + t3 +
+                '}';
     }
 }
